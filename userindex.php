@@ -1,3 +1,53 @@
+
+
+
+<?php
+
+/*
+Validación de inicio de sesión
+
+require_once 'Modelo/Usuarios.PHP';
+
+
+session_start();
+
+
+
+$usuario = new Usuarios();
+
+$usuario = $_SESSION['usuario'];
+
+
+if ($_SESSION['acceso'] == true && $_SESSION['usuario'] != null) {
+
+
+    $user = $usuario->getUser();
+    $id = $usuario->getId();
+} else {
+    header("Location: ./index.php");
+    exit();
+}
+*/
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,12 +84,12 @@
   <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <!-- Navbar Brand-->
-      <a class="navbar-brand ps-3" href="#">Peluqueria Canina</a>
+      <a class="navbar-brand ps-3" href="userindex.html">Peluqueria Canina</a>
       <!-- Sidebar Toggle-->
       <button
         class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
         id="sidebarToggle"
-        href="#!"
+        href=""
       >
         <i class="fas fa-bars"></i>
       </button>
@@ -76,9 +126,9 @@
             class="dropdown-menu dropdown-menu-end"
             aria-labelledby="navbarDropdown"
           >
-            <li><a class="dropdown-item" href="#!">perfil</a></li>
+            <li><a class="dropdown-item" href="">perfil</a></li>
             <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#!">Cerrar Sesion</a></li>
+            <li><a class="dropdown-item" href="">Cerrar Sesion</a></li>
           </ul>
         </li>
       </ul>
@@ -185,11 +235,75 @@
         <main>
        
 
-       <!--Aqui se agrega el contenido -->sis
- <!--Aregar un formulario de crear cita -->
- sisass
- <!--Aregar un formulario de asociar mascota -->
- <!--Aregar tabla para mostrar citas agendadas -->
+          <section class="featured spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title">
+                            <h2>Productos para tu mascota</h2>
+                        </div>
+                        <div class="featured__controls">
+                            <ul>
+                                <li class="" data-filter="*">Todos</li>
+                                <li data-filter=".limpieza" class="">Jabones y shampoos</li>
+                                <li data-filter=".herramienta" class="">Herramientas</li>
+                                <li data-filter=".juguete" class="">juguete</li>
+                              <!--  <li data-filter=".fastfood" class="active mixitup-control-active">Fastfood</li>-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+               
+               <!--style="display: none;"   Estilo para mostrar producto o no-->
+               
+                <div class="row featured__filter" id="MixItUpB25F5E" >
+                  
+                <?php
+
+            require_once 'Modelo/MySQL.PHP';
+            $mysql = new MySQL;
+            $mysql->conectar();
+            $consulta = $mysql->efectuarConsulta("select inventarioproductos.idinventarioProducto, inventarioproductos.nombreProducto, inventarioproductos.precioProducto, categoria.nombreCategoria from inventarioproductos INNER JOIN categoria ON categoria.idCategoria = inventarioproductos.categoriaProdcuto WHERE inventarioproductos.strockProducto > 0");
+            $mysql->desconectar();
+
+            for ($i = 0; $i < mysqli_num_rows($consulta); $i++) {
+            
+                $fila = mysqli_fetch_array($consulta);
+   
+        echo '
+    
+    <div class="col-lg-3 col-md-4 col-sm-6 mix oranges '. $fila[3] . '" >
+                        <div class="featured__item">
+                            <div class="featured__item__pic set-bg" data-setbg="assets/img/ejemplo.png" style="background-image: url(&quot;assets/img/ejemplo.png&quot;);">
+                             
+                            </div>
+                            <div class="featured__item__text">
+                                <h6><a href="#">'.$fila[1].'</a></h6>
+                                <h5>'.$fila[2].'</h5>
+                            </div>
+                        </div>
+                    </div>
+    
+    
+        ';
+}
+
+
+?>
+
+
+
+                  <!--  Producto
+                    
+                    
+                  -->
+                  
+                  
+                 
+                </div>
+            </div>
+        </section>
+
 
 
 
